@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://fakku.reynn.dev/sitemap.xml

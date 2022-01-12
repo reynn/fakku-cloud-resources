@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://fakku.reynn.dev/</loc>
+    </url>
+    <url>
+        <loc>https://fakku.reynn.dev/deployments/</loc>
+    </url>
+    <url>
+        <loc>https://fakku.reynn.dev/deployments/ci-cd/</loc>
+    </url>
+    <url>
+        <loc>https://fakku.reynn.dev/deployments/target-platforms/</loc>
+    </url>
+    <url>
+        <loc>https://fakku.reynn.dev/providers/</loc>
+    </url>
+    <url>
+        <loc>https://fakku.reynn.dev/providers/aws/</loc>
+    </url>
+    <url>
+        <loc>https://fakku.reynn.dev/providers/comparison/</loc>
+    </url>
+    <url>
+        <loc>https://fakku.reynn.dev/providers/digital-ocean/</loc>
+    </url>
+    <url>
+        <loc>https://fakku.reynn.dev/providers/google/</loc>
+    </url>
+    <url>
+        <loc>https://fakku.reynn.dev/security/</loc>
+    </url>
+    <url>
+        <loc>https://fakku.reynn.dev/security/security/</loc>
+    </url>
+</urlset>
