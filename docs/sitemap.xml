@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://fakku.reynn.dev/</loc>
+        <loc>https://reynn.github.io/</loc>
     </url>
     <url>
-        <loc>https://fakku.reynn.dev/deployments/</loc>
+        <loc>https://reynn.github.io/deployments/</loc>
     </url>
     <url>
-        <loc>https://fakku.reynn.dev/deployments/ci-cd/</loc>
+        <loc>https://reynn.github.io/deployments/ci-cd/</loc>
     </url>
     <url>
-        <loc>https://fakku.reynn.dev/deployments/target-platforms/</loc>
+        <loc>https://reynn.github.io/deployments/target-platforms/</loc>
     </url>
     <url>
-        <loc>https://fakku.reynn.dev/providers/</loc>
+        <loc>https://reynn.github.io/providers/</loc>
     </url>
     <url>
-        <loc>https://fakku.reynn.dev/providers/aws/</loc>
+        <loc>https://reynn.github.io/providers/aws/</loc>
     </url>
     <url>
-        <loc>https://fakku.reynn.dev/providers/comparison/</loc>
+        <loc>https://reynn.github.io/providers/comparison/</loc>
     </url>
     <url>
-        <loc>https://fakku.reynn.dev/providers/digital-ocean/</loc>
+        <loc>https://reynn.github.io/providers/digital-ocean/</loc>
     </url>
     <url>
-        <loc>https://fakku.reynn.dev/providers/google/</loc>
+        <loc>https://reynn.github.io/providers/google/</loc>
     </url>
     <url>
-        <loc>https://fakku.reynn.dev/security/</loc>
+        <loc>https://reynn.github.io/security/</loc>
     </url>
     <url>
-        <loc>https://fakku.reynn.dev/security/security/</loc>
+        <loc>https://reynn.github.io/security/security/</loc>
     </url>
 </urlset>
