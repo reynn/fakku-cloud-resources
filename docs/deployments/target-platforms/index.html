@@ -162,7 +162,132 @@
 Clusters are getting easier to manage with most cloud providers offerent a managed version to allow you to focus on the code.
 YAML files can get overwhelming as it is common to have one file per Kubernetes Resource, a minimal manifest would be at least 2-3 files.
 Kuberenetes allows you to create custom &quot;operators&quot;</p>
-<pre data-lang="yaml" style="background-color:#eff1f5;color:#4f5b66;" class="language-yaml "><code class="language-yaml" data-lang="yaml"><span>
+<pre data-lang="yaml" style="background-color:#eff1f5;color:#4f5b66;" class="language-yaml "><code class="language-yaml" data-lang="yaml"><span style="color:#bf616a;">apiVersion</span><span>: </span><span style="color:#a3be8c;">apps/v1
+</span><span style="color:#bf616a;">kind</span><span>: </span><span style="color:#a3be8c;">Deployment
+</span><span style="color:#bf616a;">metadata</span><span>:
+</span><span>  </span><span style="color:#bf616a;">labels</span><span>:
+</span><span>    </span><span style="color:#bf616a;">app.kubernetes.io/instance</span><span>: </span><span style="color:#a3be8c;">traefik
+</span><span>    </span><span style="color:#bf616a;">app.kubernetes.io/managed-by</span><span>: </span><span style="color:#a3be8c;">Helm
+</span><span>    </span><span style="color:#bf616a;">app.kubernetes.io/name</span><span>: </span><span style="color:#a3be8c;">traefik
+</span><span>    </span><span style="color:#bf616a;">helm.sh/chart</span><span>: </span><span style="color:#a3be8c;">traefik-10.9.1
+</span><span>  </span><span style="color:#bf616a;">name</span><span>: </span><span style="color:#a3be8c;">traefik
+</span><span style="color:#bf616a;">spec</span><span>:
+</span><span>  </span><span style="color:#bf616a;">replicas</span><span>: </span><span style="color:#d08770;">1
+</span><span>  </span><span style="color:#bf616a;">selector</span><span>:
+</span><span>    </span><span style="color:#bf616a;">matchLabels</span><span>:
+</span><span>      </span><span style="color:#bf616a;">app.kubernetes.io/instance</span><span>: </span><span style="color:#a3be8c;">traefik
+</span><span>      </span><span style="color:#bf616a;">app.kubernetes.io/name</span><span>: </span><span style="color:#a3be8c;">traefik
+</span><span>  </span><span style="color:#bf616a;">strategy</span><span>:
+</span><span>    </span><span style="color:#bf616a;">rollingUpdate</span><span>:
+</span><span>      </span><span style="color:#bf616a;">maxSurge</span><span>: </span><span style="color:#d08770;">1
+</span><span>      </span><span style="color:#bf616a;">maxUnavailable</span><span>: </span><span style="color:#d08770;">1
+</span><span>    </span><span style="color:#bf616a;">type</span><span>: </span><span style="color:#a3be8c;">RollingUpdate
+</span><span>  </span><span style="color:#bf616a;">template</span><span>:
+</span><span>    </span><span style="color:#bf616a;">metadata</span><span>:
+</span><span>      </span><span style="color:#bf616a;">annotations</span><span>:
+</span><span>        </span><span style="color:#bf616a;">k0s.reynn.net/base</span><span>: </span><span style="color:#a3be8c;">traefik
+</span><span>        </span><span style="color:#bf616a;">k0s.reynn.net/host</span><span>: </span><span style="color:#a3be8c;">mimikyu
+</span><span>        </span><span style="color:#bf616a;">prometheus.io/path</span><span>: </span><span style="color:#a3be8c;">/metrics
+</span><span>        </span><span style="color:#bf616a;">prometheus.io/port</span><span>: &quot;</span><span style="color:#a3be8c;">9100</span><span>&quot;
+</span><span>        </span><span style="color:#bf616a;">prometheus.io/scrape</span><span>: &quot;</span><span style="color:#a3be8c;">true</span><span>&quot;
+</span><span>      </span><span style="color:#bf616a;">labels</span><span>:
+</span><span>        </span><span style="color:#bf616a;">app</span><span>: </span><span style="color:#a3be8c;">traefik
+</span><span>        </span><span style="color:#bf616a;">app.kubernetes.io/instance</span><span>: </span><span style="color:#a3be8c;">traefik
+</span><span>        </span><span style="color:#bf616a;">app.kubernetes.io/managed-by</span><span>: </span><span style="color:#a3be8c;">Helm
+</span><span>        </span><span style="color:#bf616a;">app.kubernetes.io/name</span><span>: </span><span style="color:#a3be8c;">traefik
+</span><span>        </span><span style="color:#bf616a;">helm.sh/chart</span><span>: </span><span style="color:#a3be8c;">traefik-10.9.1
+</span><span>        </span><span style="color:#bf616a;">version</span><span>: </span><span style="color:#a3be8c;">v2.4
+</span><span>    </span><span style="color:#bf616a;">spec</span><span>:
+</span><span>      </span><span style="color:#bf616a;">containers</span><span>:
+</span><span>      - </span><span style="color:#bf616a;">args</span><span>:
+</span><span>        - </span><span style="color:#a3be8c;">--global.checknewversion
+</span><span>        - </span><span style="color:#a3be8c;">--global.sendanonymoususage
+</span><span>        - </span><span style="color:#a3be8c;">--entryPoints.metrics.address=:9100/tcp
+</span><span>        - </span><span style="color:#a3be8c;">--entryPoints.traefik.address=:9000/tcp
+</span><span>        - </span><span style="color:#a3be8c;">--entryPoints.web.address=:8000/tcp
+</span><span>        - </span><span style="color:#a3be8c;">--entryPoints.websecure.address=:8443/tcp
+</span><span>        - </span><span style="color:#a3be8c;">--api.dashboard=true
+</span><span>        - </span><span style="color:#a3be8c;">--ping=true
+</span><span>        - </span><span style="color:#a3be8c;">--metrics.prometheus=true
+</span><span>        - </span><span style="color:#a3be8c;">--metrics.prometheus.entrypoint=metrics
+</span><span>        - </span><span style="color:#a3be8c;">--providers.kubernetescrd
+</span><span>        - </span><span style="color:#a3be8c;">--providers.kubernetesingress
+</span><span>        - </span><span style="color:#a3be8c;">--entrypoints.web.http.redirections.entryPoint.to=:443
+</span><span>        - </span><span style="color:#a3be8c;">--entrypoints.web.http.redirections.entryPoint.scheme=https
+</span><span>        - </span><span style="color:#a3be8c;">--log.format=json
+</span><span>        - </span><span style="color:#a3be8c;">--log.level=INFO
+</span><span>        - </span><span style="color:#a3be8c;">--pilot.token=ece2b4c1-aa70-4a93-9793-ce5cd7e9368e
+</span><span>        - </span><span style="color:#a3be8c;">--pilot.dashboard=true
+</span><span>        - </span><span style="color:#a3be8c;">--metrics
+</span><span>        - </span><span style="color:#a3be8c;">--metrics.prometheus
+</span><span>        - </span><span style="color:#a3be8c;">--providers.kubernetescrd.allowCrossNamespace=false
+</span><span>        </span><span style="color:#bf616a;">image</span><span>: </span><span style="color:#a3be8c;">traefik:v2.4
+</span><span>        </span><span style="color:#bf616a;">livenessProbe</span><span>:
+</span><span>          </span><span style="color:#bf616a;">failureThreshold</span><span>: </span><span style="color:#d08770;">3
+</span><span>          </span><span style="color:#bf616a;">httpGet</span><span>:
+</span><span>            </span><span style="color:#bf616a;">path</span><span>: </span><span style="color:#a3be8c;">/ping
+</span><span>            </span><span style="color:#bf616a;">port</span><span>: </span><span style="color:#d08770;">9000
+</span><span>          </span><span style="color:#bf616a;">initialDelaySeconds</span><span>: </span><span style="color:#d08770;">10
+</span><span>          </span><span style="color:#bf616a;">periodSeconds</span><span>: </span><span style="color:#d08770;">10
+</span><span>          </span><span style="color:#bf616a;">successThreshold</span><span>: </span><span style="color:#d08770;">1
+</span><span>          </span><span style="color:#bf616a;">timeoutSeconds</span><span>: </span><span style="color:#d08770;">2
+</span><span>        </span><span style="color:#bf616a;">name</span><span>: </span><span style="color:#a3be8c;">traefik
+</span><span>        </span><span style="color:#bf616a;">ports</span><span>:
+</span><span>        - </span><span style="color:#bf616a;">containerPort</span><span>: </span><span style="color:#d08770;">9100
+</span><span>          </span><span style="color:#bf616a;">name</span><span>: </span><span style="color:#a3be8c;">metrics
+</span><span>          </span><span style="color:#bf616a;">protocol</span><span>: </span><span style="color:#a3be8c;">TCP
+</span><span>        - </span><span style="color:#bf616a;">containerPort</span><span>: </span><span style="color:#d08770;">9000
+</span><span>          </span><span style="color:#bf616a;">name</span><span>: </span><span style="color:#a3be8c;">traefik
+</span><span>          </span><span style="color:#bf616a;">protocol</span><span>: </span><span style="color:#a3be8c;">TCP
+</span><span>        - </span><span style="color:#bf616a;">containerPort</span><span>: </span><span style="color:#d08770;">8000
+</span><span>          </span><span style="color:#bf616a;">name</span><span>: </span><span style="color:#a3be8c;">web
+</span><span>          </span><span style="color:#bf616a;">protocol</span><span>: </span><span style="color:#a3be8c;">TCP
+</span><span>        - </span><span style="color:#bf616a;">containerPort</span><span>: </span><span style="color:#d08770;">8443
+</span><span>          </span><span style="color:#bf616a;">name</span><span>: </span><span style="color:#a3be8c;">websecure
+</span><span>          </span><span style="color:#bf616a;">protocol</span><span>: </span><span style="color:#a3be8c;">TCP
+</span><span>        </span><span style="color:#bf616a;">readinessProbe</span><span>:
+</span><span>          </span><span style="color:#bf616a;">failureThreshold</span><span>: </span><span style="color:#d08770;">1
+</span><span>          </span><span style="color:#bf616a;">httpGet</span><span>:
+</span><span>            </span><span style="color:#bf616a;">path</span><span>: </span><span style="color:#a3be8c;">/ping
+</span><span>            </span><span style="color:#bf616a;">port</span><span>: </span><span style="color:#d08770;">9000
+</span><span>          </span><span style="color:#bf616a;">initialDelaySeconds</span><span>: </span><span style="color:#d08770;">10
+</span><span>          </span><span style="color:#bf616a;">periodSeconds</span><span>: </span><span style="color:#d08770;">10
+</span><span>          </span><span style="color:#bf616a;">successThreshold</span><span>: </span><span style="color:#d08770;">1
+</span><span>          </span><span style="color:#bf616a;">timeoutSeconds</span><span>: </span><span style="color:#d08770;">2
+</span><span>        </span><span style="color:#bf616a;">resources</span><span>:
+</span><span>          </span><span style="color:#bf616a;">limits</span><span>:
+</span><span>            </span><span style="color:#bf616a;">cpu</span><span>: &quot;</span><span style="color:#a3be8c;">0.5</span><span>&quot;
+</span><span>            </span><span style="color:#bf616a;">memory</span><span>: </span><span style="color:#a3be8c;">256Mi
+</span><span>          </span><span style="color:#bf616a;">requests</span><span>:
+</span><span>            </span><span style="color:#bf616a;">cpu</span><span>: &quot;</span><span style="color:#a3be8c;">0.25</span><span>&quot;
+</span><span>            </span><span style="color:#bf616a;">memory</span><span>: </span><span style="color:#a3be8c;">128Mi
+</span><span>        </span><span style="color:#bf616a;">securityContext</span><span>:
+</span><span>          </span><span style="color:#bf616a;">capabilities</span><span>:
+</span><span>            </span><span style="color:#bf616a;">drop</span><span>:
+</span><span>            - </span><span style="color:#a3be8c;">ALL
+</span><span>          </span><span style="color:#bf616a;">readOnlyRootFilesystem</span><span>: </span><span style="color:#d08770;">true
+</span><span>          </span><span style="color:#bf616a;">runAsGroup</span><span>: </span><span style="color:#d08770;">65532
+</span><span>          </span><span style="color:#bf616a;">runAsNonRoot</span><span>: </span><span style="color:#d08770;">true
+</span><span>          </span><span style="color:#bf616a;">runAsUser</span><span>: </span><span style="color:#d08770;">65532
+</span><span>        </span><span style="color:#bf616a;">volumeMounts</span><span>:
+</span><span>        - </span><span style="color:#bf616a;">mountPath</span><span>: </span><span style="color:#a3be8c;">/data
+</span><span>          </span><span style="color:#bf616a;">name</span><span>: </span><span style="color:#a3be8c;">data
+</span><span>        - </span><span style="color:#bf616a;">mountPath</span><span>: </span><span style="color:#a3be8c;">/tmp
+</span><span>          </span><span style="color:#bf616a;">name</span><span>: </span><span style="color:#a3be8c;">tmp
+</span><span>        - </span><span style="color:#bf616a;">mountPath</span><span>: </span><span style="color:#a3be8c;">/plugins-storage
+</span><span>          </span><span style="color:#bf616a;">name</span><span>: </span><span style="color:#a3be8c;">plugins
+</span><span>      </span><span style="color:#bf616a;">hostNetwork</span><span>: </span><span style="color:#d08770;">false
+</span><span>      </span><span style="color:#bf616a;">securityContext</span><span>:
+</span><span>        </span><span style="color:#bf616a;">fsGroup</span><span>: </span><span style="color:#d08770;">65532
+</span><span>      </span><span style="color:#bf616a;">serviceAccountName</span><span>: </span><span style="color:#a3be8c;">traefik
+</span><span>      </span><span style="color:#bf616a;">terminationGracePeriodSeconds</span><span>: </span><span style="color:#d08770;">60
+</span><span>      </span><span style="color:#bf616a;">volumes</span><span>:
+</span><span>      - </span><span style="color:#bf616a;">emptyDir</span><span>: {}
+</span><span>        </span><span style="color:#bf616a;">name</span><span>: </span><span style="color:#a3be8c;">data
+</span><span>      - </span><span style="color:#bf616a;">emptyDir</span><span>: {}
+</span><span>        </span><span style="color:#bf616a;">name</span><span>: </span><span style="color:#a3be8c;">tmp
+</span><span>      - </span><span style="color:#bf616a;">emptyDir</span><span>: {}
+</span><span>        </span><span style="color:#bf616a;">name</span><span>: </span><span style="color:#a3be8c;">plugins
 </span></code></pre>
 <h2 id="nomad">Nomad</h2>
 <p>Similar to Kubernetes but without a lot of the overhead. Developed by HashiCorp which also created Terraform/Consul/Vault.
