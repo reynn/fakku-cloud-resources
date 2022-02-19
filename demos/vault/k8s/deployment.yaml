@@ -3,9 +3,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  vault-test
+  name: vault-test
   labels:
-    app:  vault-test
+    app: vault-test
 spec:
   selector:
     matchLabels:

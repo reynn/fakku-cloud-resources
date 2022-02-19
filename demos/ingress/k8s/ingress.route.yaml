@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingress-demo
+  labels:
+    app: ingress-demo
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`ingress-demo.fakku-dev.net`)
+      services:
+        - kind: Service
+          name: ingress-demo
+          port: 80
