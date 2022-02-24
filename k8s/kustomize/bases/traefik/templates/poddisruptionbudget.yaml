@@ -1,0 +1,17 @@
+---
+# Source: traefik/templates/poddisruptionbudget.yaml
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: traefik
+  labels:
+    app.kubernetes.io/name: traefik
+    helm.sh/chart: traefik-10.14.2
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/instance: traefik
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: traefik
+      app.kubernetes.io/instance: traefik
+  maxUnavailable: 33%
