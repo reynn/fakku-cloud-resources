@@ -106,9 +106,15 @@ spec:
           - "--metrics.prometheus.entrypoint=metrics"
           - "--providers.kubernetescrd"
           - "--experimental.http3=true"
+          - "--accesslog=true"
+          - "--accesslog.fields.defaultmode=keep"
+          - "--accesslog.fields.headers.defaultmode=drop"
+          - "--certificatesresolvers.letls.acme.tlschallenge=true"
+          - "--certificatesresolvers.letls.acme.storage=/data/acme.json"
       volumes:
         - name: data
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: traefik
         - name: tmp
           emptyDir: {}
         - name: plugins

@@ -1,0 +1,8 @@
+namespace: argo
+
+resources:
+  - https://raw.githubusercontent.com/argoproj/argo-events/v1.6.0/manifests/install.yaml
+
+images:
+  - name: quay.io/argoproj/argo-events
+    newTag: v1.6.0

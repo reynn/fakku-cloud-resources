@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik
+spec:
+  destination:
+    namespace: utils
+    server: https://kubernetes.default.svc
+  project: utils
+  source:
+    path: k8s/kustomize/bases/traefik
+    repoURL: git@github.com:reynn/fakku-cloud-resources.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      selfHeal: true

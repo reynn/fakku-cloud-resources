@@ -1,0 +1,35 @@
+namespace: argo
+
+resources:
+  - https://raw.githubusercontent.com/argoproj/argo-cd/v2.3.0-rc5/manifests/install.yaml
+  - ingress.yaml
+  - project.argo.yaml
+  - project.fakku-app.yaml
+  - project.tenkai-app.yaml
+  - project.tenkai-fakku.yaml
+  - project.utils.yaml
+
+patches:
+  - path: patch.insecure-api-server.yaml
+  - path: patch.namespace-argo.yaml
+    target:
+      group: rbac.authorization.k8s.io
+      version: v1
+      kind: ClusterRoleBinding
+      name: argocd-application-controller
+  - path: patch.namespace-argo.yaml
+    target:
+      group: rbac.authorization.k8s.io
+      version: v1
+      kind: ClusterRoleBinding
+      name: argocd-server
+
+images:
+  - name: quay.io/argoproj/argocd-applicationset
+    newTag: v0.3.0
+  - name: ghcr.io/dexidp/dex
+    newTag: v2.30.2
+  - name: quay.io/argoproj/argocd
+    newTag: v2.3.0-rc5
+  - name: redis
+    newTag: 6.2.6-alpine

@@ -17,6 +17,7 @@ resources:
   - templates/deployment.yaml
   - templates/hpa.yaml
   - templates/poddisruptionbudget.yaml
+  - templates/pvc.yaml
   - templates/service.yaml
 
 images:

@@ -1,0 +1,8 @@
+namespace: argo
+
+resources:
+  - https://raw.githubusercontent.com/argoproj/argo-rollouts/v1.2.0-rc1/manifests/install.yaml
+
+images:
+  - name: quay.io/argoproj/argo-rollouts
+    newTag: v1.2.0-rc1

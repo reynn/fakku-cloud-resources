@@ -1,0 +1,11 @@
+namespace: argo
+
+resources:
+  - https://raw.githubusercontent.com/argoproj/argo-workflows/v3.3.0-rc5/manifests/install.yaml
+  - ingress.yaml
+
+images:
+  - name: quay.io/argoproj/argocli
+    newTag: v3.3.0-rc5-linux-amd64
+  - name: quay.io/argoproj/workflow-controller
+    newTag: v3.3.0-rc5-linux-amd64

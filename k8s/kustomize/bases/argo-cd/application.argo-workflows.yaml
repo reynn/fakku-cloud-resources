@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-workflows
+spec:
+  destination:
+    namespace: argo
+    server: https://kubernetes.default.svc
+  project: argo
+  source:
+    path: k8s/kustomize/bases/argo-workflows
+    repoURL: git@github.com:reynn/fakku-cloud-resources.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      selfHeal: true

@@ -15,13 +15,13 @@ spec:
     kind: Deployment
     name: traefik
   minReplicas: 1
-  maxReplicas: 5
+  maxReplicas: 8
   metrics:
     - resource:
         name: cpu
-        targetAverageUtilization: 60
+        targetAverageUtilization: 80
       type: Resource
     - resource:
         name: memory
-        targetAverageUtilization: 60
+        targetAverageUtilization: 80
       type: Resource
