@@ -3,6 +3,14 @@ namespace: argo
 resources:
   - https://raw.githubusercontent.com/argoproj/argo-rollouts/v1.2.0-rc1/manifests/install.yaml
 
+patches:
+  - path: patch.namespace-argo.yaml
+    target:
+      group: rbac.authorization.k8s.io
+      version: v1
+      kind: ClusterRoleBinding
+      name: argo-rollouts
+
 images:
   - name: quay.io/argoproj/argo-rollouts
     newTag: v1.2.0-rc1

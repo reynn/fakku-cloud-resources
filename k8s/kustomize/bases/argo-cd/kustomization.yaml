@@ -8,6 +8,11 @@ resources:
   - project.tenkai-app.yaml
   - project.tenkai-fakku.yaml
   - project.utils.yaml
+  - application.argo-cd.yaml
+  - application.argo-events.yaml
+  - application.argo-rollouts.yaml
+  - application.argo-workflows.yaml
+  - application.traefik.yaml
 
 patches:
   - path: patch.insecure-api-server.yaml
