@@ -113,8 +113,7 @@ spec:
           - "--certificatesresolvers.letls.acme.storage=/data/acme.json"
       volumes:
         - name: data
-          persistentVolumeClaim:
-            claimName: traefik
+          emptyDir: {}
         - name: tmp
           emptyDir: {}
         - name: plugins
