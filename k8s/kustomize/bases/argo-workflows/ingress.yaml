@@ -8,8 +8,8 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`argoworkflows.dev.tenk.ai`)
+      match: Host(`workflows.dev.tenk.ai`)
       priority: 10
       services:
         - name: argo-server
-          port: 80
+          port: 2746
