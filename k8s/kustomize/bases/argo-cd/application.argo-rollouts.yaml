@@ -11,6 +11,7 @@ spec:
     path: k8s/kustomize/bases/argo-rollouts
     repoURL: git@github.com:reynn/fakku-cloud-resources.git
     targetRevision: HEAD
+    kustomize: {}
   syncPolicy:
     automated:
       selfHeal: true
