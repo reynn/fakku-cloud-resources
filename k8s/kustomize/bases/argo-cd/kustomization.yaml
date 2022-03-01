@@ -31,6 +31,14 @@ patches:
       kind: ClusterRoleBinding
       name: argocd-server
 
+configMapGenerator:
+  - name: argocd-cm
+    behavior: merge
+    literals:
+      - "kustomize.buildOptions=--enable-helm --load-restrictor LoadRestrictionsNone"
+    options:
+      disableNameSuffixHash: true
+
 images:
   - name: quay.io/argoproj/argocd-applicationset
     newTag: v0.3.0

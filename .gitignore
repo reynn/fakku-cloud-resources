@@ -1,1 +1,3 @@
 k8s/kustomize/.build/
+.build/
+k8s/kustomize/**/charts/

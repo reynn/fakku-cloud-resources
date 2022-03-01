@@ -1,9 +1,6 @@
 resources:
   - ns.argo.yaml
-  - ns.fakku.app.yaml
-  - ns.tenkai.app.yaml
-  - ns.tenkai.fakku.yaml
+  - ns.fakku-app.yaml
+  - ns.tenkai-app.yaml
+  - ns.tenkai-fakku.yaml
   - ns.utils.yaml
-
-commonAnnotations:
-    linkerd.io/inject: enabled
