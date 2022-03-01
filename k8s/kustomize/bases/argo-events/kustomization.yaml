@@ -1,8 +1,16 @@
 namespace: argo
 
 resources:
-  - https://raw.githubusercontent.com/argoproj/argo-events/v1.6.0/manifests/install.yaml
+  - https://raw.githubusercontent.com/argoproj/argo-events/v1.6.1/manifests/install.yaml
+
+patches:
+  - path: patch.namespace-argo.yaml
+    target:
+      group: rbac.authorization.k8s.io
+      version: v1
+      kind: ClusterRoleBinding
+      name: argo-events-binding
 
 images:
   - name: quay.io/argoproj/argo-events
-    newTag: v1.6.0
+    newTag: v1.6.1

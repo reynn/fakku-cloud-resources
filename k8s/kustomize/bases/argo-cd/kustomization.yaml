@@ -3,11 +3,13 @@ namespace: argo
 resources:
   - https://raw.githubusercontent.com/argoproj/argo-cd/v2.3.0-rc5/manifests/install.yaml
   - ingress.yaml
+  # Argo CD Projects
   - project.argo.yaml
   - project.fakku-app.yaml
   - project.tenkai-app.yaml
   - project.tenkai-fakku.yaml
   - project.utils.yaml
+  # Argo CD Apps
   - application.argo-cd.yaml
   - application.argo-events.yaml
   - application.argo-rollouts.yaml

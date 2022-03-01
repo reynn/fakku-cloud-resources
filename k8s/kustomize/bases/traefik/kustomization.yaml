@@ -1,23 +1,12 @@
 namespace: utils
 
-resources:
-  - crds/ingressroute.yaml
-  - crds/ingressroutetcp.yaml
-  - crds/ingressrouteudp.yaml
-  - crds/middlewares.yaml
-  - crds/middlewarestcp.yaml
-  - crds/serverstransports.yaml
-  - crds/tlsoptions.yaml
-  - crds/tlsstores.yaml
-  - crds/traefikservices.yaml
-  - templates/rbac/clusterrole.yaml
-  - templates/rbac/clusterrolebinding.yaml
-  - templates/rbac/serviceaccount.yaml
-  - templates/dashboard-hook-ingressroute.yaml
-  - templates/deployment.yaml
-  - templates/hpa.yaml
-  - templates/poddisruptionbudget.yaml
-  - templates/service.yaml
+helmChartInflationGenerator:
+  - chartName: traefik
+    chartRepoUrl: https://helm.traefik.io/traefik
+    chartVersion: "10.14.2"
+    values: helm.values.yaml
+    extraArgs:
+      - --include-crds
 
 images:
   - name: traefik

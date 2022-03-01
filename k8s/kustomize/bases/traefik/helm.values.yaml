@@ -1,7 +1,9 @@
 # Default values for Traefik
 image:
   name: traefik
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
+
+fullnameOverride: traefik
 
 # Configure the deployment
 deployment:
@@ -109,14 +111,13 @@ ports:
 # TLS Options are created as TLSOption CRDs
 # https://doc.traefik.io/traefik/https/tls/#tls-options
 # Example:
-# tlsOptions:
-#   default:
-#     sniStrict: true
-#     preferServerCipherSuites: true
-#   foobar:
-#     curvePreferences:
-#       - CurveP521
-#       - CurveP384
+tlsOptions:
+  default:
+    sniStrict: true
+    minVersion: VersionTLS12
+    curvePreferences:
+      - CurveP521
+      - CurveP384
 
 # Options for the main traefik service, where the entrypoints traffic comes
 # from.
@@ -127,13 +128,6 @@ service:
     service.beta.kubernetes.io/do-loadbalancer-name: "traefik-ingress"
     service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
     service.beta.kubernetes.io/do-loadbalancer-size-unit: "1"
-  # One of SingleStack, PreferDualStack, or RequireDualStack.
-  # ipFamilyPolicy: SingleStack
-  # List of IP families (e.g. IPv4 and/or IPv6).
-  # ref: https://kubernetes.io/docs/concepts/services-networking/dual-stack/#services
-  # ipFamilies:
-  #   - IPv4
-  #   - IPv6
 
 ## Create HorizontalPodAutoscaler object.
 ##
