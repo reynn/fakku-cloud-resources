@@ -4,6 +4,7 @@ metadata:
   name: argo-cd
 spec:
   entryPoints:
+    - web
     - websecure
   routes:
     - kind: Rule
