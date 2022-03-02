@@ -4,6 +4,7 @@ helmChartInflationGenerator:
   - chartName: traefik
     chartRepoUrl: https://helm.traefik.io/traefik
     chartVersion: "10.14.2"
+    releaseName: traefik
     values: helm.values.yaml
     extraArgs:
       - --include-crds
