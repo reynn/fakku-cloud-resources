@@ -1,15 +1,15 @@
 # Default values for Traefik
+fullnameOverride: traefik
+
 image:
   name: traefik
   pullPolicy: Always
-
-fullnameOverride: traefik
 
 # Configure the deployment
 deployment:
   enabled: true
   kind: Deployment
-  replicas: 1
+  replicas: 2
   terminationGracePeriodSeconds: 60
   minReadySeconds: 0
   shareProcessNamespace: false
@@ -22,7 +22,7 @@ podDisruptionBudget:
 
 # Use ingressClass. Ignored if Traefik version < 2.3 / kubernetes < 1.18.x
 ingressClass:
-  enabled: false
+  enabled: true
 
 # Activate Pilot integration
 pilot:
@@ -31,7 +31,7 @@ pilot:
 # Enable experimental features
 experimental:
   http3:
-    enabled: true
+    enabled: false
   plugins:
     enabled: true
   kubernetesGateway:
@@ -50,7 +50,7 @@ rollingUpdate:
 providers:
   kubernetesCRD:
     enabled: true
-    allowCrossNamespace: false
+    allowCrossNamespace: fatruelse
     allowExternalNameServices: false
 
   kubernetesIngress:
@@ -129,7 +129,6 @@ service:
   type: LoadBalancer
   annotations:
     service.beta.kubernetes.io/do-loadbalancer-name: "traefik-ingress"
-    service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
     service.beta.kubernetes.io/do-loadbalancer-size-unit: "1"
 
 ## Create HorizontalPodAutoscaler object.
@@ -165,10 +164,10 @@ podSecurityPolicy:
 resources:
   requests:
     cpu: "100m"
-    memory: "50Mi"
+    memory: "75Mi"
   limits:
     cpu: "300m"
-    memory: "150Mi"
+    memory: "200Mi"
 
 podAntiAffinity:
   requiredDuringSchedulingIgnoredDuringExecution:
