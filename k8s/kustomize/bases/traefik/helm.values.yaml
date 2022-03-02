@@ -22,7 +22,7 @@ podDisruptionBudget:
 
 # Use ingressClass. Ignored if Traefik version < 2.3 / kubernetes < 1.18.x
 ingressClass:
-  enabled: true
+  enabled: false
 
 # Activate Pilot integration
 pilot:
