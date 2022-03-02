@@ -9,7 +9,7 @@ image:
 deployment:
   enabled: true
   kind: Deployment
-  replicas: 2
+  replicas: 1
   terminationGracePeriodSeconds: 60
   minReadySeconds: 0
   shareProcessNamespace: false
