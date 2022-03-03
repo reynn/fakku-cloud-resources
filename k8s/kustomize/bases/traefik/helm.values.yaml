@@ -85,6 +85,7 @@ additionalArguments:
   - "--certificatesresolvers.lehttp.acme.storage=/data/acme.json"
   - "--certificatesresolvers.letls.acme.tlschallenge=true"
   - "--certificatesresolvers.letls.acme.storage=/data/acme.json"
+  - "--serversTransport.insecureSkipVerify=true"
 
 # Configure ports
 ports:
