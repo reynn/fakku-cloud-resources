@@ -62,6 +62,7 @@ logs:
     level: ERROR
   access:
     enabled: true
+    format: json
     fields:
       general:
         defaultmode: keep
