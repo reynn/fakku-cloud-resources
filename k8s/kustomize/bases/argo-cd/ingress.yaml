@@ -5,7 +5,7 @@ metadata:
 spec:
   entryPoints:
     - web
-    - websecure
+    # - websecure
   routes:
     - kind: Rule
       match: Host(`argocd.dev.tenk.ai`)
@@ -24,5 +24,5 @@ spec:
         - name: argocd-server
           port: 443
           scheme: h2c
-  tls:
-    certResolver: lehttp
+  # tls:
+  #   certResolver: lehttp
